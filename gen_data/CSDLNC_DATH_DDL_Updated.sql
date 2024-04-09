@@ -65,7 +65,7 @@ CREATE TABLE Don_hang (
     Phi_van_chuyen_thuc_te decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_thuc_te >= 0),
     Tong_tien_don_hang decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Tong_tien_don_hang >= 0),
     Mo_hinh_ap_dung smallint  NOT NULL DEFAULT 1,
-    Ngay_nhan_hang_thuc_te timestamp  NOT NULL,
+    Ngay_nhan_hang_thuc_te timestamp NULL,
     Ngay_giao_hang_du_kien timestamp  NOT NULL,
     Ngay_nhan_hang_du_kien timestamp  NOT NULL,
     Ma_don_vi_van_chuyen smallint  NOT NULL,
@@ -109,9 +109,9 @@ CREATE TABLE Hinh_anh_san_pham (
 -- Table: Kich_thuoc_san_pham
 CREATE TABLE Kich_thuoc_san_pham (
     Ma_san_pham bigint  NOT NULL,
-    Ma_hinh_anh int  NOT NULL,
+    Ma_kich_thuoc_san_pham int  NOT NULL,
     Kich_thuoc char(10)  NOT NULL,
-    CONSTRAINT PK_Kich_thuoc_san_pham PRIMARY KEY (Ma_san_pham,Ma_hinh_anh)
+    CONSTRAINT PK_Kich_thuoc_san_pham PRIMARY KEY (Ma_san_pham,Ma_kich_thuoc_san_pham)
 );
 
 -- Table: Lich_su_gia_san_pham
@@ -196,7 +196,7 @@ CREATE TABLE Nha_ban_hang (
     Quoc_tich text  NOT NULL,
     SDT_nha_ban_hang char(10)  NOT NULL,
     STK_thanh_toan text  NOT NULL,
---     Ho_ten text  NOT NULL,
+    Ho_ten text  NOT NULL,
     Ten_gian_hang text  NOT NULL,
     Hinh_anh text  NULL,
     Logo text  NULL,

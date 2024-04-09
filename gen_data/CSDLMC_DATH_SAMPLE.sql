@@ -6,12 +6,12 @@ DELETE FROM san_pham WHERE ma_san_pham < 20;
 
 
 
-INSERT INTO Nha_ban_hang(ma_nha_ban_hang, hinh_thuc_ban_hang, ten_gian_hang, cccd_cmnd, mat_khau, email_nha_ban_hang, quoc_tich, sdt_nha_ban_hang, stk_thanh_toan, ho_ten_nha_ban_hang, hinh_anh, logo, url_gian_hang, created_date, modified_date)
-VALUES (1, 'FBT', 'SHOP Laptop', '123456789012', 'P@ssw0rdS3cureAndSafe2024!', 'nva@gmail.com', 'Việt Nam', '0912345678', '1234567890', 'Nguyễn Văn A', 'shop-1.jpg', 'logo-1.jpg', 'http://tiki.vn/cua-hang/shop-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-       (2, 'FBT', 'THE GIO DIEN TUUU', '234567890123', 'S@feSecureP@ssword2024!', 'ttb@gmail.com', 'Việt Nam', '0923456789', '2345678901', 'Trần Thị B','shop-2.jpg', 'logo-2.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-       (3, 'FBT', 'SHOP ABC', '345678901234', 'An0therS3cureP@ssword!', 'lvc@gmail.com', 'Việt Nam', '0934567890', '3456789012', 'Lê Văn C', 'shop-3.jpg', 'logo-3.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-       (4, 'FBT', 'DO AN VAT', '456789012345', 'SecureP@ssword2024ForD!', 'ptd@gmail.com', 'Việt Nam', '0945678901', '4567890123', 'Phạm Thị D', 'shop-4.jpg', 'logo-4.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-       (5, 'FBT', 'SHOP XYZ', '567890123456', 'P@ssw0rdV3ryS3cure2024!', 'hme@gmail.com', 'Việt Nam', '0956789012', '5678901234', 'Hoàng Minh E','shop-5.jpg', 'logo-5.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO Nha_ban_hang(ma_nha_ban_hang, hinh_thuc_ban_hang, ten_gian_hang, cccd_cmnd, mat_khau, email_nha_ban_hang, quoc_tich, sdt_nha_ban_hang, stk_thanh_toan, ho_ten_nha_ban_hang, ho_ten, hinh_anh, logo, url_gian_hang, created_date, modified_date)
+VALUES (1, 'FBT', 'SHOP Laptop', '123456789012', 'P@ssw0rdS3cureAndSafe2024!', 'nva@gmail.com', 'Việt Nam', '0912345678', '1234567890', 'Nguyễn Văn A','Nguyễn Văn A', 'shop-1.jpg', 'logo-1.jpg', 'http://tiki.vn/cua-hang/shop-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+       (2, 'FBT', 'THE GIO DIEN TUUU', '234567890123', 'S@feSecureP@ssword2024!', 'ttb@gmail.com', 'Việt Nam', '0923456789', '2345678901', 'Trần Thị B', 'Trần Thị B','shop-2.jpg', 'logo-2.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+       (3, 'FBT', 'SHOP ABC', '345678901234', 'An0therS3cureP@ssword!', 'lvc@gmail.com', 'Việt Nam', '0934567890', '3456789012', 'Lê Văn C', 'Lê Văn C', 'shop-3.jpg', 'logo-3.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+       (4, 'FBT', 'DO AN VAT', '456789012345', 'SecureP@ssword2024ForD!', 'ptd@gmail.com', 'Việt Nam', '0945678901', '4567890123', 'Phạm Thị D', 'Phạm Thị D', 'shop-4.jpg', 'logo-4.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+       (5, 'FBT', 'SHOP XYZ', '567890123456', 'P@ssw0rdV3ryS3cure2024!', 'hme@gmail.com', 'Việt Nam', '0956789012', '5678901234', 'Hoàng Minh E', 'Hoàng Minh E', 'shop-5.jpg', 'logo-5.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
 INSERT INTO Loai_san_pham (Ma_loai_san_pham, Ten, Mo_ta, Cap_do_loai_san_pham, Created_date, Modified_date, Ma_loai_san_pham_cha)
@@ -74,9 +74,40 @@ VALUES
     (12, 2, 'Đen');
 
 -- check
-SELECT sp.*, nbh.*, lsp.*
+SELECT
+    sp.ma_san_pham,
+    sp.sku,
+    ten_san_pham, mo_ta_san_pham,
+    thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
+    dac_diem_noi_bat dac_diem_noi_bat_san_pham,
+    ten_gian_hang, thuong_hieu, diem_so_trung_binh
 FROM san_pham sp
 LEFT join Nha_ban_hang nbh on sp.Ma_nha_ban_hang = nbh.Ma_nha_ban_hang
 left join Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
-left join mau_sac_san_pham mssp on sp.Ma_san_pham = mssp.Ma_san_pham
-WHERE sp.Ma_san_pham = 1;
+-- left join mau_sac_san_pham mssp on sp.Ma_san_pham = mssp.Ma_san_pham
+-- WHERE sp.Ma_san_pham = 1;
+
+
+
+insert into trang_thai_don_hang
+    (ma_trang_thai, ten_trang_thai, mo_ta_trang_thai, created_date, modified_date)
+values
+    (1, 'Chờ xác nhận', 'Đơn hàng chờ xác nhận', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 'Đang xử lý', 'Đơn hàng đang được xử lý', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 'Đang vận chuyển', 'Đơn hàng đang vận chuyển', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 'Giao hàng thành công', 'Đơn hàng đã được giao thành công', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 'Đã hủy', 'Đơn hàng đã bị hủy', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+insert into don_vi_van_chuyen(ma_dvvc, ten_dvvc, loai_dvvc, mo_ta, khuyen_mai_van_chuyen, phi_van_chuyen_3kg_dau_tien_vnd, phi_van_chuyen_moi_0_5kg_vnd, created_date, modified_date)
+values(1, 'TikiNOW Smart Logistics', 1, 'Dịch vụ giao hàng siêu tốc 2h -3h', 0, 25000, 2000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+
+insert into don_hang(MA_DON_HANG, DIA_CHI_NHAN_HANG, SDT_NGUOI_NHAN, NGAY_NHAN_HANG_THUC_TE, NGAY_GIAO_HANG_DU_KIEN, NGAY_NHAN_HANG_DU_KIEN, MA_DON_VI_VAN_CHUYEN, CREATED_DATE, MODIFIED_DATE)
+VALUES
+    (1, '123 Nguyen Thi Minh Khai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, '456 Nguyen Van Cu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, '789 Nguyen Trai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, '1011 Nguyen Dinh Chieu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '1213 Nguyen Van Linh, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
