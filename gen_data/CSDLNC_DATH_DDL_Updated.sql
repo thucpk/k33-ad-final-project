@@ -31,14 +31,16 @@ CREATE TABLE Chi_tiet_don_hang (
 CREATE INDEX Thong_tin_voucher_indx on Chi_tiet_don_hang (Ma_voucher ASC);
 
 -- Table: Chi_tiet_trang_thai_don_hang
+-- DROP TABLE Chi_tiet_trang_thai_don_hang;
 CREATE TABLE Chi_tiet_trang_thai_don_hang (
+    Ma_chi_tiet_trang_thai_don_hang bigint  NOT NULL,
     Ma_trang_thai smallint  NOT NULL,
     Ma_don_hang bigint  NOT NULL,
     Thoi_gian_xu_ly_trang_thai timestamp  NOT NULL,
     Mo_ta_chi_tiet text  NOT NULL,
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
-    CONSTRAINT PK_Chi_tiet_trang_thai_don_hang PRIMARY KEY (Ma_trang_thai,Ma_don_hang)
+    CONSTRAINT PK_Chi_tiet_trang_thai_don_hang PRIMARY KEY (Ma_chi_tiet_trang_thai_don_hang)
 );
 
 -- Table: Dia_chi
@@ -311,13 +313,15 @@ ALTER TABLE Chi_tiet_don_hang ADD CONSTRAINT Chi_tiet_don_hang_Don_hang
     INITIALLY IMMEDIATE
 ;
 
+
+-- ALTER TABLE Chi_tiet_trang_thai_don_hang DROP CONSTRAINT Chi_tiet_trang_thai_don_hang_Trang_thai_don_hang;
 -- Reference: Chi_tiet_trang_thai_don_hang_Trang_thai_don_hang (table: Chi_tiet_trang_thai_don_hang)
 ALTER TABLE Chi_tiet_trang_thai_don_hang ADD CONSTRAINT Chi_tiet_trang_thai_don_hang_Trang_thai_don_hang
     FOREIGN KEY (Ma_trang_thai)
     REFERENCES Trang_thai_don_hang (Ma_trang_thai)
-    ON DELETE  CASCADE 
-    ON UPDATE  CASCADE 
-    NOT DEFERRABLE 
+    ON DELETE  CASCADE
+    ON UPDATE  CASCADE
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 
@@ -332,6 +336,7 @@ ALTER TABLE Dia_chi ADD CONSTRAINT Dia_chi_Nguoi_dung_Tiki
 ;
 
 -- Reference: Don_hang_Chi_tiet_trang_thai_don_hang (table: Chi_tiet_trang_thai_don_hang)
+-- ALTER TABLE Chi_tiet_trang_thai_don_hang DROP CONSTRAINT Don_hang_Chi_tiet_trang_thai_don_hang;
 ALTER TABLE Chi_tiet_trang_thai_don_hang ADD CONSTRAINT Don_hang_Chi_tiet_trang_thai_don_hang
     FOREIGN KEY (Ma_don_hang)
     REFERENCES Don_hang (Ma_don_hang)
