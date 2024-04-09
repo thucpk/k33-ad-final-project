@@ -118,9 +118,10 @@ CREATE TABLE Kich_thuoc_san_pham (
 CREATE TABLE Lich_su_gia_san_pham (
     Ma_lich_su_gia_san_pham bigint  NOT NULL,
     Ma_san_pham bigint  NOT NULL,
-    Thoi_gian_bat_dau_hieu_luc timestamp  NOT NULL DEFAULT 1999-01-01 04:05:06,
+    Thoi_gian_bat_dau_hieu_luc timestamp  NOT NULL DEFAULT '1999-01-01 04:05:06',
     Don_gia decimal(15,4)  NOT NULL,
-    Thoi_han_su_dung smallint  NOT NULL DEFAULT 1999-01-01 04:05:06 CHECK (Thoi_han_su_dung >= Thoi_gian_bat_dau_hieu_luc,),
+    Thoi_han_su_dung timestamp  NOT NULL DEFAULT '1999-01-01 04:05:06'
+        CHECK (Thoi_han_su_dung >= Thoi_gian_bat_dau_hieu_luc),
     CONSTRAINT PK_Lich_su_gia_san_pham PRIMARY KEY (Ma_lich_su_gia_san_pham)
 );
 
@@ -195,7 +196,7 @@ CREATE TABLE Nha_ban_hang (
     Quoc_tich text  NOT NULL,
     SDT_nha_ban_hang char(10)  NOT NULL,
     STK_thanh_toan text  NOT NULL,
-    Ho_ten text  NOT NULL,
+--     Ho_ten text  NOT NULL,
     Ten_gian_hang text  NOT NULL,
     Hinh_anh text  NULL,
     Logo text  NULL,
@@ -214,7 +215,7 @@ CREATE TABLE Phuong_thuc_thanh_toan (
     Ma_CCV text  NOT NULL,
     So_tai_khoan text  NOT NULL,
     Ngan_hang text  NOT NULL,
-    CONSTRAINT PK_Dia_chi PRIMARY KEY (Ma_nguoi_dung_Tiki,Ma_phuong_thuc_thanh_toan)
+    CONSTRAINT PK_Phuong_thuc_thanh_toan PRIMARY KEY (Ma_nguoi_dung_Tiki,Ma_phuong_thuc_thanh_toan)
 );
 
 -- Table: San_pham
