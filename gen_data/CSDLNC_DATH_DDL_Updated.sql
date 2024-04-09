@@ -1,5 +1,5 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-04-08 13:16:22.764
+-- Created by Vertabelo (http://vertabelo.com) - PNTTrang
+-- Last modification date: 2024-04-08 17:01:41.245
 
 -- tables
 -- Table: Binh_luan
@@ -21,7 +21,7 @@ CREATE TABLE Chi_tiet_don_hang (
     Ma_san_pham bigint  NOT NULL,
     Ma_don_hang bigint  NOT NULL,
     So_luong_san_pham smallint  NOT NULL,
-    Thanh_tien bigint  NOT NULL DEFAULT 0 CHECK (Thanh_tien >= 0),
+    Thanh_tien decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Thanh_tien >= 0),
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
     Ma_voucher bigint  NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE Don_hang (
     Ma_don_hang bigint  NOT NULL,
     Dia_chi_nhan_hang text  NOT NULL,
     SDT_nguoi_nhan char(10)  NOT NULL,
-    Tong_tam_tinh bigint  NOT NULL DEFAULT 0 CHECK (Tong_tam_tinh >= 0),
-    Tong_so_tien_giam_gia bigint  NOT NULL DEFAULT 0 CHECK (Tong_so_tien_giam_gia >= 0),
-    Phi_van_chuyen_thuc_te bigint  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_thuc_te >= 0),
-    Tong_tien_don_hang bigint  NOT NULL DEFAULT 0 CHECK (Tong_tien_don_hang >= 0),
+    Tong_tam_tinh decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Tong_tam_tinh >= 0),
+    Tong_so_tien_giam_gia decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Tong_so_tien_giam_gia >= 0),
+    Phi_van_chuyen_thuc_te decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_thuc_te >= 0),
+    Tong_tien_don_hang decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Tong_tien_don_hang >= 0),
     Mo_hinh_ap_dung smallint  NOT NULL DEFAULT 1,
     Ngay_nhan_hang_thuc_te timestamp  NOT NULL,
     Ngay_giao_hang_du_kien timestamp  NOT NULL,
@@ -82,9 +82,9 @@ CREATE TABLE Don_vi_van_chuyen (
     Ten_dvvc text  NOT NULL,
     Loai_dvvc int  NOT NULL,
     Mo_ta text  NULL,
-    Khuyen_mai_van_chuyen bigint  NOT NULL DEFAULT 0 CHECK (Khuyen_mai_van_chuyen >= 0),
-    Phi_van_chuyen_3kg_dau_tien_VND bigint  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_3kg_dau_tien_VND >= 0),
-    Phi_van_chuyen_moi_0_5kg_VND bigint  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_moi_0_5kg_VND >= 0),
+    Khuyen_mai_van_chuyen decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Khuyen_mai_van_chuyen >= 0),
+    Phi_van_chuyen_3kg_dau_tien_VND decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_3kg_dau_tien_VND >= 0),
+    Phi_van_chuyen_moi_0_5kg_VND decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Phi_van_chuyen_moi_0_5kg_VND >= 0),
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
     CONSTRAINT PK_DVVC PRIMARY KEY (Ma_dvvc)
@@ -118,9 +118,9 @@ CREATE TABLE Kich_thuoc_san_pham (
 CREATE TABLE Lich_su_gia_san_pham (
     Ma_lich_su_gia_san_pham bigint  NOT NULL,
     Ma_san_pham bigint  NOT NULL,
-    Thoi_gian_bat_dau_hieu_luc timestamp  NOT NULL DEFAULT '1999-01-01 04:05:06',
-    Don_gia bigint  NOT NULL,
-    Thoi_han_su_dung timestamp  NOT NULL DEFAULT '1999-01-01 04:05:06' CHECK (Thoi_han_su_dung >= Thoi_gian_bat_dau_hieu_luc),
+    Thoi_gian_bat_dau_hieu_luc timestamp  NOT NULL DEFAULT 1999-01-01 04:05:06,
+    Don_gia decimal(15,4)  NOT NULL,
+    Thoi_han_su_dung smallint  NOT NULL DEFAULT 1999-01-01 04:05:06 CHECK (Thoi_han_su_dung >= Thoi_gian_bat_dau_hieu_luc,),
     CONSTRAINT PK_Lich_su_gia_san_pham PRIMARY KEY (Ma_lich_su_gia_san_pham)
 );
 
@@ -170,13 +170,13 @@ CREATE TABLE Nguoi_dung (
 CREATE TABLE Nguoi_dung_Tiki (
     Ma_nguoi_dung_Tiki bigint  NOT NULL,
     Ho_va_ten text  NOT NULL,
-    Gioi_tinh char(3)  NULL,
+    Gioi_tinh text  NULL CHECK (Gioi_tinh IN ('Nam', 'Nữ', 'Không xác định')),
     Kenh_xac_thuc text  NOT NULL,
     Ngay_sinh timestamp  NULL,
     Ten_dang_nhap text  NOT NULL CHECK (char_length(Ten_dang_nhap) >= 6),
     Avatar_url text  NULL,
     Quoc_tich text  NULL,
-    Mat_khau text  NOT NULL CHECK (char_length(Mat_khau) >= 20),
+    Mat_khau text  NOT NULL CHECK (char_length(Mat_khau) >= 20 AND Mat_khau ~ '.*[A-Z].*' AND Mat_khau ~ '.*[^a-zA-Z0-9].*' AND Mat_khau ~ '^[A-Za-z]'),
     Email_dang_nhap text  NOT NULL,
     SDT_dang_nhap char(10)  NOT NULL,
     Tiki_xu int  NOT NULL DEFAULT 0 CHECK (Tiki_xu >= 0),
@@ -190,7 +190,7 @@ CREATE TABLE Nha_ban_hang (
     Hinh_thuc_ban_hang text  NOT NULL,
     Ho_ten_nha_ban_hang text  NOT NULL,
     CCCD_CMND char(12)  NOT NULL,
-    Mat_khau text  NOT NULL CHECK (char_length(Mat_khau) >= 20),
+    Mat_khau text  NOT NULL CHECK (char_length(Mat_khau) >= 20 AND Mat_khau ~ '.*[A-Z].*' AND Mat_khau ~ '.*[^a-zA-Z0-9].*' AND Mat_khau ~ '^[A-Za-z]'),
     Email_nha_ban_hang text  NOT NULL,
     Quoc_tich text  NOT NULL,
     SDT_nha_ban_hang char(10)  NOT NULL,
@@ -214,7 +214,7 @@ CREATE TABLE Phuong_thuc_thanh_toan (
     Ma_CCV text  NOT NULL,
     So_tai_khoan text  NOT NULL,
     Ngan_hang text  NOT NULL,
-    CONSTRAINT PK_Phuong_thuc_thanh_toan PRIMARY KEY (Ma_nguoi_dung_Tiki,Ma_phuong_thuc_thanh_toan)
+    CONSTRAINT PK_Dia_chi PRIMARY KEY (Ma_nguoi_dung_Tiki,Ma_phuong_thuc_thanh_toan)
 );
 
 -- Table: San_pham
@@ -222,7 +222,7 @@ CREATE TABLE San_pham (
     Ma_san_pham bigint  NOT NULL,
     SKU char(10)  NOT NULL,
     Ten_san_pham text  NOT NULL,
-    Mo_ta_san_pham text  NOT NULL,
+    Mo_ta_san_pham text  NOT NULL CHECK (char_length(Mo_ta_san_pham) > 200),
     Thuong_hieu text  NULL,
     Ten_tac_gia text  NULL,
     Thong_tin_chi_tiet json  NULL,
@@ -251,8 +251,8 @@ CREATE TABLE Thong_tin_voucher (
     Mo_ta_voucher text  NULL,
     Trang_thai_active boolean  NOT NULL,
     Phan_tram_giam_gia real  NOT NULL DEFAULT 0.0,
-    So_tien_khuyen_mai money  NOT NULL DEFAULT 0,
-    Dieu_kien_su_dung json  NOT NULL,
+    So_tien_khuyen_mai decimal(15,4)  NOT NULL DEFAULT 0,
+    Dieu_kien_su_dung text  NOT NULL,
     Han_su_dung timestamp  NOT NULL,
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
