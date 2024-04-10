@@ -56,13 +56,19 @@ class ESUtils(object):
         return res
 
     def kw_autocomplete(self, index, search_term):
-        query = {
-            "match": {
-                "keyword": search_term
+        suggest = {
+            "name-suggestion": {
+                "prefix": search_term,
+                "completion": {
+                    "field": "suggest"
+                }
             }
         }
-        res = self.es_cli.search(index=index, query=query)
-        return res
+        res = self.es_cli.search(index=index, suggest=suggest)
+        rs = list()
+        for hit in res['suggest']['name-suggestion'][0]['options']:
+            rs.append(hit['_source']['name'])
+        return rs
 
     def create_and_index_documents(self, _index: str, es_mapping: dict, key: str, data: List[dict]):
         self.es_cli.options(ignore_status=400).indices.create(index=_index, body=es_mapping)
