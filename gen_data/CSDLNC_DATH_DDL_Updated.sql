@@ -70,6 +70,7 @@ CREATE TABLE Don_hang (
     Ngay_nhan_hang_thuc_te timestamp NULL,
     Ngay_giao_hang_du_kien timestamp  NOT NULL,
     Ngay_nhan_hang_du_kien timestamp  NOT NULL,
+    Ma_nguoi_dung_Tiki bigint  NOT NULL,
     Ma_don_vi_van_chuyen smallint  NOT NULL,
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
@@ -353,6 +354,15 @@ ALTER TABLE Don_hang ADD CONSTRAINT Don_hang_Don_vi_van_chuyen
     ON DELETE  CASCADE 
     ON UPDATE  CASCADE 
     NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+ALTER TABLE Don_hang ADD CONSTRAINT Don_hang_Nguoi_dung_Tiki
+    FOREIGN KEY (Ma_nguoi_dung_Tiki)
+    REFERENCES Nguoi_dung_Tiki (Ma_nguoi_dung_Tiki)
+    ON DELETE  CASCADE
+    ON UPDATE  CASCADE
+    NOT DEFERRABLE
     INITIALLY IMMEDIATE
 ;
 

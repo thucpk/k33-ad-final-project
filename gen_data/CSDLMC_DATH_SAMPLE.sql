@@ -103,14 +103,30 @@ insert into don_vi_van_chuyen(ma_dvvc, ten_dvvc, loai_dvvc, mo_ta, khuyen_mai_va
 values(1, 'TikiNOW Smart Logistics', 1, 'Dịch vụ giao hàng siêu tốc 2h -3h', 0, 25000, 2000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
+insert into nguoi_dung(
+    ma_dinh_danh_nguoi_dung, thoi_gian_truy_cap_lan_cuoi, ip_address, thiet_bi_su_dung, ma_quoc_gia, quoc_gia, ma_khu_vuc, khu_vuc, mui_gio, tinh_thanh_pho, quan_xa_huyen, kinh_do, vi_do)
+values (1, '2024-04-10 00:00:00', '123.123.123.123', 'Iphone 11', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 1', 'Phuong Ben Thanh', 106.6992, 10.7716),
+       (2, '2024-04-10 00:00:00', '111.111.111.333', 'Samsung Galaxy S21', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 2', 'Phuong Thao Dien', 106.7373, 10.8016),
+       (3, '2024-04-10 00:00:00', '222.222.222.444', 'Iphone 12', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 3', 'Phuong Pham Ngu Lao', 106.6872, 10.7766);
 
-insert into don_hang(MA_DON_HANG, DIA_CHI_NHAN_HANG, SDT_NGUOI_NHAN, NGAY_NHAN_HANG_THUC_TE, NGAY_GIAO_HANG_DU_KIEN, NGAY_NHAN_HANG_DU_KIEN, MA_DON_VI_VAN_CHUYEN, CREATED_DATE, MODIFIED_DATE)
+
+insert into nguoi_dung_tiki(
+    ma_nguoi_dung_tiki, ho_va_ten, gioi_tinh, kenh_xac_thuc, ngay_sinh, ten_dang_nhap,
+    avatar_url, quoc_tich, mat_khau, email_dang_nhap, sdt_dang_nhap, ma_dinh_danh_nguoi_dung)
+values (1, 'Nguyễn Văn A', 'Nam', 'Email', '1990-01-01', 'ngvana', 'avatar-1.jpg', 'Việt Nam', 'P@ssw0rdS3cureAndSafe2024!','vana@gmail.com',
+        '0912345678', 1),
+       (2, 'Trần Thị B', 'Nữ', 'Email', '1991-02-02', 'tranthb', 'avatar-2.jpg', 'Việt Nam', 'S@feSecureP@ssword2024!','thib@gmail.com',
+        '0923456789', 2),
+       (3, 'Lê Văn C', 'Nam', 'Email', '1992-03-03', 'levanc', 'avatar-3.jpg', 'Việt Nam', 'An0therS3cureP@ssword!','vanc@gmail.com',
+        '0934567890', 3);
+
+insert into don_hang(MA_DON_HANG, DIA_CHI_NHAN_HANG, SDT_NGUOI_NHAN, NGAY_NHAN_HANG_THUC_TE, NGAY_GIAO_HANG_DU_KIEN, NGAY_NHAN_HANG_DU_KIEN, MA_DON_VI_VAN_CHUYEN, ma_nguoi_dung_tiki,CREATED_DATE, MODIFIED_DATE)
 VALUES
-    (1, '123 Nguyen Thi Minh Khai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, '456 Nguyen Van Cu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, '789 Nguyen Trai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, '1011 Nguyen Dinh Chieu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, '1213 Nguyen Van Linh, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (1, '123 Nguyen Thi Minh Khai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, '456 Nguyen Van Cu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, '789 Nguyen Trai, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, '1011 Nguyen Dinh Chieu, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, '1213 Nguyen Van Linh, Q5, TP.HCM', 0123456789, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 insert into chi_tiet_trang_thai_don_hang(ma_chi_tiet_trang_thai_don_hang, ma_don_hang, ma_trang_thai, Thoi_gian_xu_ly_trang_thai, mo_ta_chi_tiet, created_date, modified_date)
 values
@@ -128,26 +144,13 @@ values
 
 -- don hang xu ly
 with tmp as (
-select ma_don_hang
-from chi_tiet_trang_thai_don_hang
+select dh.ma_don_hang
+from nguoi_dung_tiki ndt
+join don_hang dh on ndt.ma_nguoi_dung_tiki=dh.ma_nguoi_dung_tiki
+join chi_tiet_trang_thai_don_hang ctttdh on dh.ma_don_hang=ctttdh.ma_don_hang
+where ndt.ma_nguoi_dung_tiki=1
 group by 1
 having max(ma_trang_thai)=2)
 select c.*
 from don_hang c
 join tmp on tmp.ma_don_hang=c.ma_don_hang;
-
-insert into nguoi_dung(
-    ma_dinh_danh_nguoi_dung, thoi_gian_truy_cap_lan_cuoi, ip_address, thiet_bi_su_dung, ma_quoc_gia, quoc_gia, ma_khu_vuc, khu_vuc, mui_gio, tinh_thanh_pho, quan_xa_huyen, kinh_do, vi_do)
-values (1, '2024-04-10 00:00:00', '123.123.123.123', 'Iphone 11', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 1', 'Phuong Ben Thanh', 106.6992, 10.7716),
-       (2, '2024-04-10 00:00:00', '111.111.111.333', 'Samsung Galaxy S21', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 2', 'Phuong Thao Dien', 106.7373, 10.8016),
-       (3, '2024-04-10 00:00:00', '222.222.222.444', 'Iphone 12', 'VN', 'Viet Nam', 'HCM', 'Ho Chi Minh', 'UTC+7', 'Quan 3', 'Phuong Pham Ngu Lao', 106.6872, 10.7766);
-
-insert into nguoi_dung_tiki(
-    ma_nguoi_dung_tiki, ho_va_ten, gioi_tinh, kenh_xac_thuc, ngay_sinh, ten_dang_nhap,
-    avatar_url, quoc_tich, mat_khau, email_dang_nhap, sdt_dang_nhap, ma_dinh_danh_nguoi_dung)
-values (1, 'Nguyễn Văn A', 'Nam', 'Email', '1990-01-01', 'ngvana', 'avatar-1.jpg', 'Việt Nam', 'P@ssw0rdS3cureAndSafe2024!','vana@gmail.com',
-        '0912345678', 1),
-         (2, 'Trần Thị B', 'Nữ', 'Email', '1991-02-02', 'tranthb', 'avatar-2.jpg', 'Việt Nam', 'S@feSecureP@ssword2024!','thib@gmail.com',
-        '0923456789', 2),
-         (3, 'Lê Văn C', 'Nam', 'Email', '1992-03-03', 'levanc', 'avatar-3.jpg', 'Việt Nam', 'An0therS3cureP@ssword!','vanc@gmail.com',
-        '0934567890', 3);
