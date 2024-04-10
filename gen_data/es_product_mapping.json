@@ -1,0 +1,56 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "similarity": {
+      "scripted_tfidf": {
+        "type": "scripted",
+        "script": {
+          "source": "double tf = Math.sqrt(doc.freq); double idf = Math.log((field.docCount+1.0)/(term.docFreq+1.0)) + 1.0; double norm = 1/Math.sqrt(doc.length); return query.boost * tf * idf * norm;"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "ten_san_pham": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "mo_ta_san_pham": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "ten_tac_gia": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "thong_tin_chi_tiet_san_pham": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "dac_diem_noi_bat_san_pham": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "ten_gian_hang": {
+        "type": "text",
+        "similarity": "scripted_tfidf"
+      },
+      "thuong_hieu": {
+        "type": "keyword"
+      },
+      "sku": {
+          "type": "keyword"
+      },
+      "ma_san_pham": {
+        "type": "keyword"
+      },
+      "created_date": {
+        "type": "date"
+      },
+      "diem_so_trung_binh": {
+        "type": "integer"
+      }
+    }
+  }
+}

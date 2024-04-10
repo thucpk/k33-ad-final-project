@@ -1,3 +1,4 @@
+import os
 import secrets
 import warnings
 from typing import Annotated, Any, Literal
@@ -25,7 +26,7 @@ def parse_cors(v: Any) -> list[str] | str:
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env", env_ignore_empty=True, extra="ignore"
+        env_file=".env", extra="ignore"
     )
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
@@ -47,7 +48,6 @@ class Settings(BaseSettings):
     ] = []
 
     PROJECT_NAME: str
-    SENTRY_DSN: HttpUrl | None = None
     POSTGRES_SERVER: str
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str
@@ -57,6 +57,10 @@ class Settings(BaseSettings):
     REDIS_HOST: str
     REDIS_PORT: int = 6379
     REDIS_PASSWORD: str
+
+    ELASTICSEARCH_SERVER: str
+    ELASTICSEARCH_PORT: int = 9200
+    ELASTICSEARCH_SCHEMA: str = "http"
 
     @computed_field  # type: ignore[misc]
     @property
