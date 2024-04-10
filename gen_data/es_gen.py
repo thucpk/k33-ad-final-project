@@ -19,7 +19,7 @@ if __name__ == '__main__':
     q = """
     SELECT
         sp.ma_san_pham, sp.sku, sp.ten_san_pham, sp.mo_ta_san_pham,
-        sp.thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
+        -- sp.thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
         sp.dac_diem_noi_bat dac_diem_noi_bat_san_pham,
         sp.so_luong_da_ban,
         ten_gian_hang, thuong_hieu, diem_so_trung_binh,
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     es_utils = ESUtils()
     es_product_mapping = json.load(open('./gen_data/es_product_mapping.json', 'r'))
-    es_product_index = 'san_pham'
+    es_product_index = 'products'
     product_key = 'ma_san_pham'
     product_docs = df.to_dict(orient='records')
     es_utils.create_and_index_documents(es_product_index, es_product_mapping, product_key, product_docs)
