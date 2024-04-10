@@ -12,7 +12,8 @@ router = APIRouter()
     "/",
     status_code=201,
 )
-def order_tracking(user_id=1, order_status=2, limit=5, offset=0) -> Any:
+def orders(user_id=1, order_status=2, limit=5, page=0) -> Any:
+    offset = page * limit
     pg_con = psycopg2.connect(
         host=settings.POSTGRES_SERVER,
         port=settings.POSTGRES_PORT,
@@ -52,7 +53,7 @@ def order_tracking(user_id=1, order_status=2, limit=5, offset=0) -> Any:
         "total": total,
         "items": items,
         "limit": limit,
-        "offset": offset,
+        "page": page,
     }
 
     return rs

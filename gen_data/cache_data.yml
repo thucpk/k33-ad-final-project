@@ -1,0 +1,122 @@
+---
+data:
+  - keyword: tai nghe bluetooth
+    type: keyword
+    url: https://tiki.vn/search?q=tai%20nghe%20bluetooth
+  - keyword: iphone 15
+    type: keyword
+    url: https://tiki.vn/search?q=iphone%2015
+  - id: -100
+    keyword: Apple Flagship Store
+    logo: https://salt.tikicdn.com/cache/80x80/ts/tka/4c/ec/65/955f13c00db11dbc52907030568c9517.png
+    store_id: -100
+    subtitle: 42 sản phẩm
+    title: Apple Flagship Store
+    type: seller
+    url: https://tiki.vn/khuyen-mai/appleflagshipstore
+  - keyword: quạt hơi nước
+    type: keyword
+    url: https://tiki.vn/search?q=qu%E1%BA%A1t%20h%C6%A1i%20n%C6%B0%E1%BB%9Bc
+  - keyword: thư cho em
+    type: keyword
+    url: https://tiki.vn/search?q=th%C6%B0%20cho%20em
+  - keyword: thẻ cào viettel
+    type: keyword
+    url: https://tiki.vn/search?q=th%E1%BA%BB%20c%C3%A0o%20viettel
+  - keyword: thẻ điên thoại
+    type: keyword
+    url: https://tiki.vn/search?q=th%E1%BA%BB%20%C4%91i%C3%AAn%20tho%E1%BA%A1i
+  - keyword: con đường chẳng mấy ai đi
+    type: keyword
+    url: https://tiki.vn/search?q=con%20%C4%91%C6%B0%E1%BB%9Dng%20ch%E1%BA%B3ng%20m%E1%BA%A5y%20ai%20%C4%91i
+  - keyword: khí chất bao nhiêu hạnh phúc bấy nhiêu
+    type: keyword
+    url: https://tiki.vn/search?q=kh%C3%AD%20ch%E1%BA%A5t%20bao%20nhi%C3%AAu%20h%E1%BA%A1nh%20ph%C3%BAc%20b%E1%BA%A5y%20nhi%C3%AAu
+  - keyword: chuột không dây
+    type: keyword
+    url: https://tiki.vn/search?q=chu%E1%BB%99t%20kh%C3%B4ng%20d%C3%A2y
+data_collapsed: 3
+widgets:
+  - advertisement:
+    code: promo
+    icon: https://salt.tikicdn.com/ts/upload/4b/4e/8a/d4d3453a684913b8ee5aeaa2ea26ebae.png
+    image_url: https://salt.tikicdn.com/ts/tikimsp/4d/f2/a3/b9bcad8acec382d5223e3a3e726f30cd.jpg
+    placement: top
+    text: Giao Nhanh Đúng Hẹn
+    title: promo
+    type: promo
+    url: https://tiki.vn/khuyen-mai/hang-nhap-khau-chinh-hang?itm_campaign=HMP_YPD_TKA_BNA_UNK_ALL_ALL_UNK_UNK_UNK_TMSX.330ddcd4-956f-4cd6-8529-cdbc3d14895c&itm_medium=CPD&itm_source=tiki-ads&tmsx=330ddcd4-956f-4cd6-8529-cdbc3d14895c
+  - code: hot_keywords
+    items:
+      - subtitle: 1.5k+ sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/ts/product/d4/72/15/fe3b18d47e449abcdcef42612bfcc5be.jpg
+        title: đồ bộ năm đẹp
+        url: https://tiki.vn/search?q=%C4%91%E1%BB%93+b%E1%BB%99+n%C4%83m+%C4%91%E1%BA%B9p&ref=searchBar
+      - subtitle: 2.1k+ sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/ts/product/63/5f/c1/125d7004554d9cbfbcf3bf4c08bb3834.png
+        title: anker soundcore
+        url: https://tiki.vn/search?q=anker+soundcore&ref=searchBar
+      - subtitle: 77 sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/ts/product/b0/83/60/4ab0c01305795398c12cce62496bd927.jpg
+        title: máy in brother
+        url: https://tiki.vn/search?q=m%C3%A1y+in+brother&ref=searchBar
+      - subtitle: 71 sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/media/catalog/producttmp/fd/f8/13/6110c0a19c3d0192ba6c01c5ddbec846.jpg
+        title: airpod 2
+        url: https://tiki.vn/search?q=airpod+2&ref=searchBar
+      - subtitle: 64 sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/media/catalog/producttmp/84/e8/3a/044ba3b02295a016c63513f8d44a9706.jpg
+        title: kindle gen 11
+        url: https://tiki.vn/search?q=kindle+gen+11&ref=searchBar
+      - subtitle: 89 sản phẩm
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/ts/product/b6/e3/7b/c5c28c4416c43e5136db16245baa8cfe.jpg
+        title: paperwhite 5
+        url: https://tiki.vn/search?q=paperwhite+5&ref=searchBar
+    placement: bottom
+    title: Tìm Kiếm Phổ Biến
+    type: hot_keywords
+  - code: hot_categories
+    items:
+      - id: 28856
+        name: Máy đọc sách
+        thumbnail_url: https://salt.tikicdn.com/ts/category/fc/ab/44/a492de1fa611e8e6122fadc24a1bb7b0.png
+        url: https://tiki.vn/may-doc-sach/c28856
+        url_key: may-doc-sach
+      - id: 1838
+        name: Chuột Văn Phòng Không Dây
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/media/catalog/product/m/2/m221blue_0.u2470.d20161215.t101804.12446.jpg
+        url: https://tiki.vn/chuot-van-phong-khong-day/c1838
+        url_key: chuot-van-phong-khong-day
+      - id: 2324
+        name: Loa Bluetooth
+        thumbnail_url: https://salt.tikicdn.com/ts/category/f1/1f/62/9d05d7e5414b2cd8a5e060e33f60aa5e.png
+        url: https://tiki.vn/loa-bluetooth/c2324
+        url_key: loa-bluetooth
+      - id: 5343
+        name: Tất, vớ nam
+        thumbnail_url: https://salt.tikicdn.com/cache/280x280/ts/product/49/92/14/134938cd43411d8530f24778c1f7153e.jpg
+        url: https://tiki.vn/vo-nam/c5343
+        url_key: vo-nam
+      - id: 1789
+        name: Điện Thoại - Máy Tính Bảng
+        thumbnail_url: https://salt.tikicdn.com/ts/category/54/c0/ff/fe98a4afa2d3e5142dc8096addc4e40b.png
+        url: https://tiki.vn/dien-thoai-may-tinh-bang/c1789
+        url_key: dien-thoai-may-tinh-bang
+      - id: 1815
+        name: Thiết Bị Số - Phụ Kiện Số
+        thumbnail_url: https://salt.tikicdn.com/ts/category/75/34/29/d900f845e51e95a2c41b5b035468f959.png
+        url: https://tiki.vn/thiet-bi-kts-phu-kien-so/c1815
+        url_key: thiet-bi-kts-phu-kien-so
+      - id: 1846
+        name: Laptop - Máy Vi Tính - Linh kiện
+        thumbnail_url: https://salt.tikicdn.com/ts/category/92/b5/c0/3ffdb7dbfafd5f8330783e1df20747f6.png
+        url: https://tiki.vn/laptop-may-vi-tinh-linh-kien/c1846
+        url_key: laptop-may-vi-tinh-linh-kien
+      - id: 915
+        name: Thời trang nam
+        thumbnail_url: https://salt.tikicdn.com/ts/category/00/5d/97/384ca1a678c4ee93a0886a204f47645d.png
+        url: https://tiki.vn/thoi-trang-nam/c915
+        url_key: thoi-trang-nam
+    placement: bottom
+    title: Danh Mục Nổi Bật
+    type: hot_categories
