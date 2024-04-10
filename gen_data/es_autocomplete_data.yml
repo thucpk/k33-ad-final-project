@@ -1,0 +1,82 @@
+docs:
+  - id: 1
+    name: Elasticsearch
+    suggest:
+      input:
+        - elastic
+        - search
+        - elasticsearch
+
+  - id: 2
+    name: Laptop
+    suggest:
+      input:
+        - lap
+        - lapt
+        - laptop
+
+  - id: 3
+    name: Laptop xách tay
+    suggest:
+      input:
+        - lap
+        - lapt
+        - laptop
+        - xach
+        - xach tay
+        - xach tay laptop
+
+  - id: 4
+    name: iPhone
+    suggest:
+      input:
+        - ip
+
+  - id: 5
+    name: iPhone 13
+    suggest:
+      input:
+        - ip 13
+        - ip13
+
+  - id: 6
+    name: iPhone 13 Pro
+    suggest:
+      input:
+        - ip 13 pro
+        - ip13pro
+        - pro
+
+  - id: 7
+    name: iPhone 13 Pro Max
+    suggest:
+      input:
+        - ip 13 pro max
+        - ip13promax
+        - pro max
+        - max
+
+  - id: 8
+    name: Xách tay
+    suggest:
+      input:
+        - xach
+        - xach tay
+
+  - id: 9
+    name: Máy vi tính
+    suggest:
+      input:
+        - may
+        - may vi
+        - desktop
+        - desk
+
+  - id: 10
+    name: Chuột máy tính
+    suggest:
+      input:
+        - chuot
+        - chuot may
+        - mouse
+        - mouse computer
