@@ -1,45 +1,59 @@
 # Analyze, design, and apply multiple database types to application: Tiki E-commerce Site
+[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
-## Introduction
+## I. Introduction
 
 This is final project in our Advanced Database course, focusing on the comprehensive analysis, design, and application of multiple database types within the context of an e-commerce site. Our aim was to understand and implement various database SQL and NoSQL databases handle diverse data needs effectively.
 
-## Objectives
+## II. Objectives
 
 - To analyze the data requirements of an e-commerce platform and identify suitable database types for different data needs.
 - To design and integrate SQL and NoSQL databases to support the functionality of an e-commerce site.
 - To apply database concepts to real-world applications, emphasizing performance, scalability, and data integrity.
 - To demonstrate the ability of multiple databases to work cohesively within a single application environment.
 
-## System architecture
+## III. System architecture
 
 Briefly describe the overall architecture of your e-commerce site. Include a diagram if possible to illustrate how the different components and databases interact with each other.
 
-## Database integration
-
 ### Relational Database
 
-- **Purpose**:
-- **Technology Used**: PostgreSQL
+- **Purpose**: core database managing relational data such as users, products, orders, etc.
+- **Technology Used**: PostgresSQL
 - **Schema Design**: Provide a brief overview or diagram of the schema.
 
 ### NoSQL databases
 
 #### Cache Database
-- **Purpose**:
-- **Technology Used**: PostgreSQL
+- **Purpose**: caching frequently accessed data
+- **Technology Used**: Redis
 - **Schema Design**: Provide a brief overview or diagram of the schema.
 
 #### Search Engine
-- **Purpose**:
-- **Technology Used**: 
+- **Purpose**: autocomplete search and search products by keyword
+- **Technology Used**: Elasticsearch
 - **Schema Design**: Provide a brief overview or diagram of the schema.
 
 ## Features
 
-TODO
+- **Feature 1**: list of suggested products in search bar
+![suggestion-list.png](resources/suggestion-list.png)
+
+- **Feature 2**: search keyword
+![search-keyword.png](resources/search-keyword.png)
+
+- **Feature 3,4**: List of orders and cancel order
+![order-list.png](resources/cancel.png)
+
+- **Feature 5**: Filter and sort products list
+![filter-sort.png](resources/productlist.png)
 
 ## Setup and Installation
+
+### Requirements
+- python 3.10
+- Docker
+- Docker Compose
 
 ```shell
 cd k33-ad-final-project/
@@ -56,11 +70,14 @@ PYTHONPATH=./backend python gen_data/cache_gen.py
 
 # Load data into ES
 PYTHONPATH=./backend python gen_data/es_gen.py
+
+# Start docker compose 
+docker-compose up -d
+
+# Shutdown docker compose
+docker-compose down
 ```
 
-## Usage
-
-TODO
 
 ## Contributors
 
@@ -80,8 +97,6 @@ List the team members:
 
 
 ## License
-
-Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
