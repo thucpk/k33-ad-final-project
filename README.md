@@ -20,19 +20,16 @@ Briefly describe the overall architecture of your e-commerce site. Include a dia
 
 - **Purpose**: core database managing relational data such as users, products, orders, etc.
 - **Technology Used**: PostgresSQL
-- **Schema Design**: Provide a brief overview or diagram of the schema.
 
 ### NoSQL databases
 
 #### Cache Database
 - **Purpose**: caching frequently accessed data
 - **Technology Used**: Redis
-- **Schema Design**: Provide a brief overview or diagram of the schema.
 
 #### Search Engine
 - **Purpose**: autocomplete search and search products by keyword
 - **Technology Used**: Elasticsearch
-- **Schema Design**: Provide a brief overview or diagram of the schema.
 
 ## Features
 
