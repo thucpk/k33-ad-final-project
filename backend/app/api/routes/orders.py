@@ -13,7 +13,7 @@ router = APIRouter()
     "/",
     status_code=201,
 )
-def orders(user_id=1, order_status=2, limit=5, page=0) -> Any:
+def orders(user_id: int = 1, order_status: int = 2, limit: int = 5, page: int = 0) -> Any:
     offset = page * limit
     pg_con = psycopg2.connect(
         host=settings.POSTGRES_SERVER,
