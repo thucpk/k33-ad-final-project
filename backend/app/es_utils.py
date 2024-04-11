@@ -22,10 +22,32 @@ class ESUtils(object):
                     }
                 }
             })
-        elif "thuong_hieu" in conditions:
+        if "thuong_hieu" in conditions and conditions["thuong_hieu"] is not None:
             filters.append({
                 "match": {
                     "thuong_hieu": conditions["thuong_hieu"]
+                }
+            })
+        if "tiki_now" in conditions and conditions["tiki_now"] > 0:
+            filters.append({
+                "match": {
+                    "tiki_now": conditions["tiki_now"]
+                }
+            })
+        if "price_from" in conditions:
+            filters.append({
+                "range": {
+                    "don_gia": {
+                        "gte": conditions["price_from"]
+                    }
+                }
+            })
+        if "price_to" in conditions:
+            filters.append({
+                "range": {
+                    "don_gia": {
+                        "lte": conditions["price_to"]
+                    }
                 }
             })
         return filters
@@ -48,11 +70,16 @@ class ESUtils(object):
                 "filter": filtered
             }
         }
-        sorted = {
-            # "diem_so_trung_binh":  {"diem_so_trung_binh": {"order": "desc"}},
-            "created_date": {"created_date": {"order": "desc"}}
+        mapping = {
+        }
+
+        sort = {
+            "ban_chay": {"so_luong_da_ban": {"order": "desc"}},
+            "hang_moi": {"created_date": {"order": "desc"}},
+            "gia_thap_den_cao": {"don_gia": {"order": "asc"}},
+            "gia_cao_den_thap": {"don_gia": {"order": "desc"}}
         }.get(sort_by, None)
-        res = self.es_cli.search(index=index, query=query, sort=sorted)
+        res = self.es_cli.search(index=index, query=query, sort=sort)
         return res
 
     def kw_autocomplete(self, index, search_term):

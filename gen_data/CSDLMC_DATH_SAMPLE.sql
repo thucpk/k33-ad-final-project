@@ -8,7 +8,7 @@ DELETE FROM san_pham WHERE ma_san_pham < 20;
 
 INSERT INTO Nha_ban_hang(ma_nha_ban_hang, hinh_thuc_ban_hang, ten_gian_hang, cccd_cmnd, mat_khau, email_nha_ban_hang, quoc_tich, sdt_nha_ban_hang, stk_thanh_toan, ho_ten_nha_ban_hang, ho_ten, hinh_anh, logo, url_gian_hang, created_date, modified_date)
 VALUES (1, 'FBT', 'SHOP Laptop', '123456789012', 'P@ssw0rdS3cureAndSafe2024!', 'nva@gmail.com', 'Việt Nam', '0912345678', '1234567890', 'Nguyễn Văn A','Nguyễn Văn A', 'shop-1.jpg', 'logo-1.jpg', 'http://tiki.vn/cua-hang/shop-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-       (2, 'FBT', 'THE GIO DIEN TUUU', '234567890123', 'S@feSecureP@ssword2024!', 'ttb@gmail.com', 'Việt Nam', '0923456789', '2345678901', 'Trần Thị B', 'Trần Thị B','shop-2.jpg', 'logo-2.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+       (2, 'FBT', 'THE GIO DIEN TU', '234567890123', 'S@feSecureP@ssword2024!', 'ttb@gmail.com', 'Việt Nam', '0923456789', '2345678901', 'Trần Thị B', 'Trần Thị B','shop-2.jpg', 'logo-2.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
        (3, 'FBT', 'SHOP ABC', '345678901234', 'An0therS3cureP@ssword!', 'lvc@gmail.com', 'Việt Nam', '0934567890', '3456789012', 'Lê Văn C', 'Lê Văn C', 'shop-3.jpg', 'logo-3.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
        (4, 'FBT', 'DO AN VAT', '456789012345', 'SecureP@ssword2024ForD!', 'ptd@gmail.com', 'Việt Nam', '0945678901', '4567890123', 'Phạm Thị D', 'Phạm Thị D', 'shop-4.jpg', 'logo-4.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
        (5, 'FBT', 'SHOP XYZ', '567890123456', 'P@ssw0rdV3ryS3cure2024!', 'hme@gmail.com', 'Việt Nam', '0956789012', '5678901234', 'Hoàng Minh E', 'Hoàng Minh E', 'shop-5.jpg', 'logo-5.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
@@ -142,6 +142,24 @@ values
     (10,3,1, '2024-04-10 00:00:00', 'Chờ Tiki xác nhận', current_timestamp, current_timestamp);
 
 
+-- DELETE FROM lich_su_gia_san_pham WHERE ma_lich_su_gia_san_pham > 0;
+insert into lich_su_gia_san_pham(ma_lich_su_gia_san_pham, ma_san_pham, thoi_gian_bat_dau_hieu_luc, don_gia, thoi_han_su_dung)
+values (1, 1, '2020-01-01', 20000000, '2025-01-01'),
+       (2, 1, '2025-01-01', 25000000, '2030-01-01'),
+       (3, 2, '2020-01-01', 30000000, '2025-01-01'),
+       (4, 2, '2025-01-01', 25000000, '2030-01-01'),
+       (5, 3, '2020-01-01', 1000000, '2025-01-01'),
+       (6, 4, '2020-01-01', 1200000, '2030-01-01'),
+       (7, 5, '2020-01-01', 8000000, '2025-01-01'),
+       (8, 6, '2020-01-01', 1000000, '2030-01-01'),
+       (9, 7, '2020-01-01', 5000000, '2025-01-01'),
+       (10, 8, '2020-01-01', 600000, '2030-01-01'),
+       (11, 9, '2020-01-01', 300000, '2025-01-01'),
+       (12, 10, '2020-01-01', 400000, '2030-01-01'),
+       (13, 11, '2020-01-01', 18000000, '2025-01-01'),
+       (14, 12, '2020-01-01', 23000000, '2030-01-01')
+;
+
 -- don hang xu ly
 with tmp as (
 select dh.ma_don_hang
@@ -154,3 +172,22 @@ having max(ma_trang_thai)=2)
 select c.*
 from don_hang c
 join tmp on tmp.ma_don_hang=c.ma_don_hang;
+
+SELECT
+    sp.ma_san_pham, sp.sku, sp.ten_san_pham, sp.mo_ta_san_pham,
+    -- sp.thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
+    sp.dac_diem_noi_bat dac_diem_noi_bat_san_pham,
+    sp.so_luong_da_ban,
+    ten_gian_hang, thuong_hieu,
+    diem_so_trung_binh,
+    lsg.don_gia,
+    case when lsg.don_gia < 1000000 then 0
+         when lsg.don_gia >= 1000000 then 1
+    else 0 end tiki_now,
+    sp.created_date
+FROM san_pham sp
+JOIN Nha_ban_hang nbh on sp.Ma_nha_ban_hang = nbh.Ma_nha_ban_hang
+JOIN Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
+JOIN lich_su_gia_san_pham lsg on sp.ma_san_pham = lsg.ma_san_pham
+WHERE lsg.thoi_gian_bat_dau_hieu_luc <= current_timestamp
+  and lsg.thoi_han_su_dung >= current_timestamp;

@@ -22,12 +22,19 @@ if __name__ == '__main__':
         -- sp.thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
         sp.dac_diem_noi_bat dac_diem_noi_bat_san_pham,
         sp.so_luong_da_ban,
-        ten_gian_hang, thuong_hieu, diem_so_trung_binh,
+        ten_gian_hang, thuong_hieu,
+        diem_so_trung_binh,
+        lsg.don_gia,
+        case when lsg.don_gia < 1000000 then 0
+             when lsg.don_gia >= 1000000 then 1
+        else 0 end tiki_now,
         sp.created_date
     FROM san_pham sp
     JOIN Nha_ban_hang nbh on sp.Ma_nha_ban_hang = nbh.Ma_nha_ban_hang
     JOIN Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
-    -- JOIN mau_sac_san_pham mssp on sp.Ma_san_pham = mssp.Ma_san_pham
+    JOIN lich_su_gia_san_pham lsg on sp.ma_san_pham = lsg.ma_san_pham
+    WHERE lsg.thoi_gian_bat_dau_hieu_luc <= current_timestamp
+      and lsg.thoi_han_su_dung >= current_timestamp;
     """
 
     df = pd.read_sql_query(

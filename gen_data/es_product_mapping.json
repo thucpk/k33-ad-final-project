@@ -50,6 +50,12 @@
       },
       "diem_so_trung_binh": {
         "type": "integer"
+      },
+      "don_gia": {
+        "type": "integer"
+      },
+      "tiki_now": {
+        "type": "boolean"
       }
     }
   }
