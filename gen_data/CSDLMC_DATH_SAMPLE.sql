@@ -150,6 +150,12 @@ values
     (9,2,3, '2024-04-10 00:10:00', 'Đang vận chuyển', current_timestamp, current_timestamp),
     (10,3,1, '2024-04-10 00:00:00', 'Chờ Tiki xác nhận', current_timestamp, current_timestamp);
 
+insert into chi_tiet_don_hang(ma_don_hang, ma_san_pham, so_luong_san_pham, thanh_tien, created_date, modified_date)
+values (1,1,1,20000000, current_timestamp, current_timestamp),
+       (2,2,1,30000000, current_timestamp, current_timestamp),
+       (3,1,1,20000000, current_timestamp, current_timestamp),
+       (3,2,1,30000000, current_timestamp, current_timestamp);
+
 
 -- DELETE FROM lich_su_gia_san_pham WHERE ma_lich_su_gia_san_pham > 0;
 -- Laptop, May vi tinh, Linh kien, Phu kien
@@ -209,3 +215,34 @@ JOIN Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
 JOIN lich_su_gia_san_pham lsg on sp.ma_san_pham = lsg.ma_san_pham
 WHERE lsg.thoi_gian_bat_dau_hieu_luc <= current_timestamp
   and lsg.thoi_han_su_dung >= current_timestamp;
+
+
+-- check cancel order
+-- SELECT ma_trang_thai
+-- FROM don_hang
+-- WHERE ma_don_hang=3
+select max(ma_trang_thai) as ma_trang_thai
+from don_hang dh
+join chi_tiet_trang_thai_don_hang ctttdh on dh.ma_don_hang=ctttdh.ma_don_hang
+where dh.ma_don_hang=3
+-- where ndt.ma_nguoi_dung_tiki=1
+--             order = cur.fetchone()
+--             if not order:
+--                 return {"message": "order not found"}
+--             if order['ma_trang_thai'] in (4, 5):
+--                 return {"message": "order is not cancelable"}
+--             # Update order status
+--                   cur.execute(f"UPDATE don_hang SET ma_trang_thai=4 "
+--                   f"WHERE ma_don_hang={order_id}")
+--                   # Update product quantity
+--                         cur.execute(f"SELECT ma_san_pham, so_luong FROM chi_tiet_don_hang "
+--                         f"WHERE ma_don_hang={order_id}")
+--                         before_products = cur.fetchall()
+--                         for product in before_products:
+--                         cur.execute(f"UPDATE san_pham SET so_luong=so_luong+{product[1]} "
+--                         f"WHERE ma_san_pham={product[0]}")
+--                         cur.execute(f"SELECT ma_san_pham, so_luong FROM chi_tiet_don_hang "
+--                         f"WHERE ma_don_hang={order_id}")
+
+;
+SELECT ma_san_pham, so_luong FROM chi_tiet_don_hang

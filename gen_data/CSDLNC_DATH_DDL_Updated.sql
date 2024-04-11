@@ -16,6 +16,9 @@ CREATE TABLE Binh_luan (
 
 CREATE INDEX Binh_luan_ng_dung_tiki on Binh_luan (Ma_nguoi_dung_Tiki ASC);
 
+-- update Chi_tiet_don_hang column ma_voucher can be null
+-- ALTER TABLE chi_tiet_don_hang ALTER COLUMN ma_voucher DROP NOT NULL;
+
 -- Table: Chi_tiet_don_hang
 CREATE TABLE Chi_tiet_don_hang (
     Ma_san_pham bigint  NOT NULL,
@@ -24,7 +27,7 @@ CREATE TABLE Chi_tiet_don_hang (
     Thanh_tien decimal(15,4)  NOT NULL DEFAULT 0 CHECK (Thanh_tien >= 0),
     Created_date timestamp  NOT NULL,
     Modified_date timestamp  NOT NULL,
-    Ma_voucher bigint  NOT NULL,
+    Ma_voucher bigint NULL,
     CONSTRAINT PK_Chi_tiet_don_hang PRIMARY KEY (Ma_san_pham,Ma_don_hang)
 );
 
@@ -33,7 +36,7 @@ CREATE INDEX Thong_tin_voucher_indx on Chi_tiet_don_hang (Ma_voucher ASC);
 -- Table: Chi_tiet_trang_thai_don_hang
 -- DROP TABLE Chi_tiet_trang_thai_don_hang;
 CREATE TABLE Chi_tiet_trang_thai_don_hang (
-    Ma_chi_tiet_trang_thai_don_hang bigint  NOT NULL,
+    Ma_chi_tiet_trang_thai_don_hang bigserial  NOT NULL,
     Ma_trang_thai smallint  NOT NULL,
     Ma_don_hang bigint  NOT NULL,
     Thoi_gian_xu_ly_trang_thai timestamp  NOT NULL,
