@@ -60,7 +60,7 @@ def orders(user_id=1, order_status=2, limit=5, page=0) -> Any:
     return rs
 
 
-@router.post("cancel-order", status_code=201)
+@router.post("/cancel-order", status_code=201)
 def cancel_order(order_id: int) -> Any:
     pg_con = psycopg2.connect(
         host=settings.POSTGRES_SERVER,
