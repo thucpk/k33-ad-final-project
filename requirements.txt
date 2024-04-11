@@ -1,0 +1,7 @@
+redis
+elasticsearch
+pydantic_settings
+pydantic
+pyyaml
+sqlalchemy
+pandas
