@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - '${POSTGRES_PORT}:5432'
+      - '45677:5432'
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
