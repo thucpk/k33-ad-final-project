@@ -134,6 +134,9 @@ class ESUtils(object):
         return rs
 
     def create_and_index_documents(self, _index: str, es_mapping: dict, key: str, data: List[dict]):
+        # check index if exists, delete
+        if self.es_cli.indices.exists(index=_index):
+            self.es_cli.indices.delete(index=_index)
         self.es_cli.options(ignore_status=400).indices.create(index=_index, body=es_mapping)
         actions = [
             {
