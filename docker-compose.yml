@@ -61,6 +61,8 @@ services:
       - '8080:8080'
     depends_on:
       - postgres
+      - elasticsearch
+      - redis
     env_file:
       - .env
     environment:
