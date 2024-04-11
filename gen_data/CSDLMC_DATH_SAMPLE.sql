@@ -1,10 +1,5 @@
-DELETE FROM nha_ban_hang where ma_nha_ban_hang < 6;
-DELETE FROM san_pham WHERE ma_san_pham < 20;
-
-
-
-
-
+-- DELETE FROM nha_ban_hang where ma_nha_ban_hang < 6;
+-- DELETE FROM san_pham WHERE ma_san_pham < 20;
 
 INSERT INTO Nha_ban_hang(ma_nha_ban_hang, hinh_thuc_ban_hang, ten_gian_hang, cccd_cmnd, mat_khau, email_nha_ban_hang, quoc_tich, sdt_nha_ban_hang, stk_thanh_toan, ho_ten_nha_ban_hang, ho_ten, hinh_anh, logo, url_gian_hang, created_date, modified_date)
 VALUES (1, 'FBT', 'SHOP Laptop', '123456789012', 'P@ssw0rdS3cureAndSafe2024!', 'nva@gmail.com', 'Việt Nam', '0912345678', '1234567890', 'Nguyễn Văn A','Nguyễn Văn A', 'shop-1.jpg', 'logo-1.jpg', 'http://tiki.vn/cua-hang/shop-1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -14,11 +9,17 @@ VALUES (1, 'FBT', 'SHOP Laptop', '123456789012', 'P@ssw0rdS3cureAndSafe2024!', '
        (5, 'FBT', 'SHOP XYZ', '567890123456', 'P@ssw0rdV3ryS3cure2024!', 'hme@gmail.com', 'Việt Nam', '0956789012', '5678901234', 'Hoàng Minh E', 'Hoàng Minh E', 'shop-5.jpg', 'logo-5.jpg', 'http://tiki.vn/cua-hang/shop-2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
+-- DELETE FROM Loai_san_pham WHERE Ma_loai_san_pham < 17;
 INSERT INTO Loai_san_pham (Ma_loai_san_pham, Ten, Mo_ta, Cap_do_loai_san_pham, Created_date, Modified_date, Ma_loai_san_pham_cha)
-VALUES (1, 'Laptop - Máy Vi Tính - Linh kiện', 'Các sản phẩm máy vi tính bao gồm laptop, desktop và linh kiện điện tử.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
+VALUES (1, 'Laptop - Máy Vi Tính - Linh kiện', 'Các sản phẩm máy vi tính bao gồm laptop, desktop và linh kiện điện tử.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
        (2, 'Máy Vi Tính', 'Các sản phẩm máy vi tính để bàn.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
        (3, 'Laptop', 'Các mẫu laptop mới nhất từ các thương hiệu hàng đầu.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
-       (4, 'Linh Kiện Điện Tử', 'Tất cả linh kiện điện tử cho máy vi tính và các thiết bị điện tử khác.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+       (4, 'Linh Kiện Điện Tử', 'Tất cả linh kiện điện tử cho máy vi tính và các thiết bị điện tử khác.', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1),
+       (5, 'Điện thoại - Máy tính bảng', 'Tất cả điện thoại, máy tính bảng, máy đọc sách, điện thoại bàn', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL),
+       (6, 'Điện thoại', 'Tất cả điện thoại di động từ các thương hiệu hàng đầu.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5),
+       (7, 'Máy tính bảng', 'Tất cả máy tính bảng từ các thương hiệu hàng đầu.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5),
+       (8, 'Máy đọc sách', 'Tất cả máy đọc sách từ các thương hiệu hàng đầu.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5),
+       (9, 'Điện thoại bàn', 'Tất cả điện thoại bàn từ các thương hiệu hàng đầu.', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5);
 
 -- Laptop
 INSERT INTO San_pham (Ma_san_pham, SKU, Ten_san_pham, Mo_ta_san_pham, Thuong_hieu, Ten_tac_gia, Thong_tin_chi_tiet, Thong_tin_bao_hanh, Dac_diem_noi_bat, Thong_tin_an_tam_mua_sam, Han_su_dung, So_luong_ton_kho, So_luong_da_ban, Diem_so_trung_binh, Created_date, Modified_date, Ma_loai_san_pham, Ma_nha_ban_hang)
@@ -44,6 +45,14 @@ VALUES
 INSERT INTO San_pham (Ma_san_pham, SKU, Ten_san_pham, Mo_ta_san_pham, Thuong_hieu, Ten_tac_gia, Thong_tin_chi_tiet, Thong_tin_bao_hanh, Dac_diem_noi_bat, Thong_tin_an_tam_mua_sam, Han_su_dung, So_luong_ton_kho, So_luong_da_ban, Diem_so_trung_binh, Created_date, Modified_date, Ma_loai_san_pham, Ma_nha_ban_hang)
 VALUES(11, 'LAPXHT001', 'Laptop Xách Tay Dell XPS', 'Laptop Dell XPS xách tay từ Mỹ, mỏng nhẹ, hiệu suất cao. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Dell', NULL, '{"description": "CPU i7, RAM 16GB, SSD 1TB, Màn hình 4K"}', '{"description": "Bảo hành quốc tế 1 năm"}', 'Màn hình 4K cảm ứng, thiết kế sang trọng', '{"description": "Cam kết chính hãng, hỗ trợ đổi trả trong 7 ngày"}', NULL, 10, 2, 5.0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 1),
       (12, 'MACXHT002', 'MacBook Pro 16 inch Xách Tay', 'MacBook Pro 16 inch 2021 xách tay từ Mỹ, bản cao cấp nhất. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Apple', NULL, '{"description": "Apple M1 Pro, RAM 32GB, SSD 1TB"}', '{"description": "Bảo hành quốc tế 1 năm"}', 'Hiệu suất mạnh mẽ, màn hình Retina', '{"description": "Cam kết chính hãng, hỗ trợ đổi trả trong 7 ngày"}', NULL, 5, 1, 5.0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 2);
+
+-- Điện Thoại
+INSERT INTO San_pham (Ma_san_pham, SKU, Ten_san_pham, Mo_ta_san_pham, Thuong_hieu, Ten_tac_gia, Thong_tin_chi_tiet, Thong_tin_bao_hanh, Dac_diem_noi_bat, Thong_tin_an_tam_mua_sam, Han_su_dung, So_luong_ton_kho, So_luong_da_ban, Diem_so_trung_binh, Created_date, Modified_date, Ma_loai_san_pham, Ma_nha_ban_hang)
+VALUES(13, 'iphone1', 'Iphone 11', 'Iphone 11 64GB màu đen, hàng chính hãng, bảo hành 12 tháng. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Apple', NULL, '{"description": "64GB, màu đen, hàng chính hãng"}', '{"description": "Bảo hành 12 tháng"}', 'Camera chất lượng, hiệu suất ổn định', '{"description": "Hỗ trợ trả góp 0%"}', NULL, 50, 10, 4.5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 6, 1),
+      (14, 'iphone2', 'Iphone 12', 'Iphone 12 128GB màu trắng, hàng chính hãng, bảo hành 12 tháng. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Apple', NULL, '{"description": "128GB, màu trắng, hàng chính hãng"}', '{"description": "Bảo hành 12 tháng"}', 'Camera chất lượng, hiệu suất ổn định', '{"description": "Hỗ trợ trả góp 0%"}', NULL, 30, 5, 4.8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 6, 2),
+      (15, 'samsung1', 'Samsung Galaxy S21', 'Samsung Galaxy S21 128GB màu xanh, hàng chính hãng, bảo hành 12 tháng. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Samsung', NULL, '{"description": "128GB, màu xanh, hàng chính hãng"}', '{"description": "Bảo hành 12 tháng"}', 'Camera chất lượng, hiệu suất ổn định', '{"description": "Hỗ trợ trả góp 0%"}', NULL, 20, 3, 4.9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 6, 3),
+      (16, 'iphone3', 'Iphone 13', 'Iphone 13 256GB màu đen, hàng chính hãng, bảo hành 12 tháng. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Apple', NULL, '{"description": "256GB, màu đen, hàng chính hãng"}', '{"description": "Bảo hành 12 tháng"}', 'Camera chất lượng, hiệu suất ổn định', '{"description": "Hỗ trợ trả góp 0%"}', NULL, 10, 2, 5.0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 6, 1),
+      (17, 'samsung2', 'Samsung Galaxy S22', 'Samsung Galaxy S22 128GB màu xanh, hàng chính hãng, bảo hành 12 tháng. Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....', 'Samsung', NULL, '{"description": "128GB, màu xanh, hàng chính hãng"}', '{"description": "Bảo hành 12 tháng"}', 'Camera chất lượng, hiệu suất ổn định', '{"description": "Hỗ trợ trả góp 0%"}', NULL, 5, 1, 5.0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 6, 2);
 
 
 INSERT INTO Mau_sac_san_pham (Ma_san_pham, Ma_mau_sac, Ten_mau_sac)
@@ -74,16 +83,16 @@ VALUES
     (12, 2, 'Đen');
 
 -- check
-SELECT
-    sp.ma_san_pham,
-    sp.sku,
-    ten_san_pham, mo_ta_san_pham,
-    thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
-    dac_diem_noi_bat dac_diem_noi_bat_san_pham,
-    ten_gian_hang, thuong_hieu, diem_so_trung_binh
-FROM san_pham sp
-LEFT join Nha_ban_hang nbh on sp.Ma_nha_ban_hang = nbh.Ma_nha_ban_hang
-left join Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
+-- SELECT
+--     sp.ma_san_pham,
+--     sp.sku,
+--     ten_san_pham, mo_ta_san_pham,
+--     thong_tin_chi_tiet thong_tin_chi_tiet_san_pham,
+--     dac_diem_noi_bat dac_diem_noi_bat_san_pham,
+--     ten_gian_hang, thuong_hieu, diem_so_trung_binh
+-- FROM san_pham sp
+-- LEFT join Nha_ban_hang nbh on sp.Ma_nha_ban_hang = nbh.Ma_nha_ban_hang
+-- left join Loai_san_pham lsp on sp.Ma_loai_san_pham = lsp.Ma_loai_san_pham
 -- left join mau_sac_san_pham mssp on sp.Ma_san_pham = mssp.Ma_san_pham
 -- WHERE sp.Ma_san_pham = 1;
 
@@ -143,6 +152,7 @@ values
 
 
 -- DELETE FROM lich_su_gia_san_pham WHERE ma_lich_su_gia_san_pham > 0;
+-- Laptop, May vi tinh, Linh kien, Phu kien
 insert into lich_su_gia_san_pham(ma_lich_su_gia_san_pham, ma_san_pham, thoi_gian_bat_dau_hieu_luc, don_gia, thoi_han_su_dung)
 values (1, 1, '2020-01-01', 20000000, '2025-01-01'),
        (2, 1, '2025-01-01', 25000000, '2030-01-01'),
@@ -159,6 +169,14 @@ values (1, 1, '2020-01-01', 20000000, '2025-01-01'),
        (13, 11, '2020-01-01', 18000000, '2025-01-01'),
        (14, 12, '2020-01-01', 23000000, '2030-01-01')
 ;
+
+-- Dien thoai
+insert into lich_su_gia_san_pham(ma_lich_su_gia_san_pham, ma_san_pham, thoi_gian_bat_dau_hieu_luc, don_gia, thoi_han_su_dung)
+values (15, 13, '2020-01-01', 11000000, '2025-01-01'),
+       (16, 14, '2020-01-01', 17000000, '2025-01-01'),
+       (17, 15, '2020-01-01', 12000000, '2025-01-01'),
+       (18, 16, '2020-01-01', 20000000, '2025-01-01'),
+       (19, 17, '2020-01-01', 18000000, '2025-01-01');
 
 -- don hang xu ly
 with tmp as (

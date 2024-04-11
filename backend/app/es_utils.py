@@ -55,23 +55,59 @@ class ESUtils(object):
     def product_query(self, index, search_term, conditions=None, sort_by=None):
         filtered = self.product_filter_builder(conditions)
         query = {
+            "function_score": {
+                "query": {
             "bool": {
-                "must": {
-                    "multi_match": {
-                        "query": search_term,
-                        "fields": [
-                            "ten_san_pham^1",     # Default boost
-                            "ten_gian_hang^1",    # Default boost
-                            "thuong_hieu^1",      # Default boost
-                            "sku^10"              # Higher boost for SKU matches
-                        ]
+                "should": [
+                    {
+                        "match": {
+                            "ten_san_pham": {
+                                "query": search_term,
+                                "boost": 20
+                            }
+                        }
+                    },
+                    {
+                        "match": {
+                            "ten_gian_hang": {
+                                "query": search_term,
+                                "boost": 20
+                            }
+                        }
+                    },
+                    {
+                        "match": {
+                            "thuong_hieu": {
+                                "query": search_term,
+                                "boost": 10
+                            }
+                        }
+                    },
+                    {
+                        "match": {
+                            "sku": {
+                                "query": search_term,
+                                "boost": 30
+                            }
+                        }
                     }
-                },
+                ],
                 "filter": filtered
             }
+        },
+        "functions": [
+            {
+                "script_score": {
+                    "script": {
+                        "source": "if (_score > 0) { return _score; } return 0;"
+                    }
+                }
+            }
+        ],
+        "min_score": 0.0001
+            }
         }
-        mapping = {
-        }
+        print(query)
 
         sort = {
             "ban_chay": {"so_luong_da_ban": {"order": "desc"}},
