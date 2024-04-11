@@ -41,7 +41,22 @@ TODO
 
 ## Setup and Installation
 
-TODO 
+```shell
+cd k33-ad-final-project/
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Load data into PostgreSQL
+# gen_data/CSDLNC_DATH_DDL_Updated.sql
+# gen_data/CSDLNC_DATH_SAMPLE.sql
+
+# Load data into Redis
+PYTHONPATH=./backend python gen_data/cache_gen.py
+
+# Load data into ES
+PYTHONPATH=./backend python gen_data/es_gen.py
+```
 
 ## Usage
 
